@@ -12,6 +12,10 @@
 
 ## Added Features
 
+## Design
+
+![](design.png)
+
 ## Installation Instructions
 
 - Clone the repo
