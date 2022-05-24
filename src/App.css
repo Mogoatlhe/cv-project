@@ -114,6 +114,7 @@ header{
     border-radius: 50%;
     height: 85px;
     width: 85px;
+    display: none;
 }
 
 #profile-picture:hover{
@@ -126,5 +127,4 @@ header{
     place-self: center;
     width: 40px;
     text-align: center;
-    display: none;
 }
