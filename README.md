@@ -12,6 +12,9 @@
 
 ## Added Features
 
+- [ ] Add a section to allow the user to add/remove a profile picture.
+- [ ] Add an option to allow the user to download their CV as a PDF.
+
 ## Design
 
 ![](design.png)
