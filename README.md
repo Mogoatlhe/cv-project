@@ -1,4 +1,4 @@
-# CV PROTECT
+# CV PROJECT
 
 #### A CV creation website to help practice ReactJS
 
