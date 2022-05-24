@@ -7,7 +7,7 @@ class CvHeader extends Component{
 
         this.state = {
             name: "Name Surname",
-            role: "Proffesion/Role",
+            role: "Profession/Role",
             applicantDescr: "Brief description about yourself lorem lorem lorem lorem lorem lorem",
             picture: false,
         }
