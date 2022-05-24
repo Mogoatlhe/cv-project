@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Trykker&display=swap');
+
+:root {
+    --trykker: "Trykker", serif;
+    --black-shade: rgb(67, 66, 66);
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: var(--trykker);
+}
+
+header{
+    position: fixed;
+    width: 100vw;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--black-shade);
+    color: white;
+}
+
+#hints{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 37%;
+}
