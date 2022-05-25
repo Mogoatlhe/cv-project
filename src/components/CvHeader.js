@@ -9,51 +9,75 @@ class CvHeader extends Component{
         this.state = {
             name: "Name Surname",
             role: "Profession/Role",
-            applicantDescr: "Brief one sentence description about yourself lorem lorem lorem lorem lorem lorem",
+            applicantDescr: "Brief one sentence description about yourself",
             picture: false,
         }
 
-        this.nameSurname = null;
-        this.nameSurnameInput = null;
-        this.nameSurnameLabel = null;
+        this.field = null;
+        this.input = null;
+        this.label = null;
 
         this.fields = {
-            name: "name-surname"
+            nameSurname: {
+                id: "name-surname",
+                maxLength: "26",
+                label: "Name Surname: "
+            },
+            role: {
+                id: "role",
+                maxLength: "25",
+                label: "Profession/Role: "
+            },
+            description: {
+                id: "applicant-description",
+                maxLength: "70",
+                label: "Short Description: "
+            }
         }
 
         this.handleHeaderInfoChange = this.handleHeaderInfoChange.bind(this);
     }
 
-    editHeaderInfo = () => {
-        this.nameSurname = document.getElementById("name-surname");
-        this.nameSurnameInput = document.getElementById("name-surname-input");
-        this.nameSurnameLabel = document.getElementById("name-surname-label");
+    editHeaderInfo = (e) => {
+        this.field = document.getElementById(e.target.id);
+        this.input = document.getElementById(`${e.target.id}-input`);
+        this.label = document.getElementById(`${e.target.id}-label`);
 
-        this.nameSurname.classList.add("hidden");
-        this.nameSurnameInput.classList.remove("hidden");
-        this.nameSurnameLabel.classList.remove("hidden");
+        this.field.classList.add("hidden");
+        this.input.classList.remove("hidden");
+        this.label.classList.remove("hidden");
         
-        this.nameSurnameInput.focus();
+        this.input.focus();
     }
 
     hideInputField = () => {
-        this.nameSurname.classList.remove("hidden");
-        this.nameSurnameInput.classList.add("hidden");
-        this.nameSurnameLabel.classList.add("hidden");
+        this.field.classList.remove("hidden");
+        this.input.classList.add("hidden");
+        this.label.classList.add("hidden");
+    }
+
+    editRelevantField = (id, value) => {
+        const idFirstFourChars = id.substring(0, 4);
+        const stateKeys = Object.keys(this.state);
+        const keysFirstFourChars = stateKeys.map(key => key.substring(0, 4));
+        const matchingIdIndex = keysFirstFourChars.findIndex(key => key === idFirstFourChars);
+        const currentField = stateKeys[matchingIdIndex];
+        
+        this.setState({
+            [currentField]: value,
+        })
     }
 
     handleHeaderInfoChange = (e) => {
         e.preventDefault();
 
         if(e.target.value !== undefined){
-            this.setState({
-                name: e.target.value,
-            });
+            this.editRelevantField(e.target.id, e.target.value);
         }else{
             this.hideInputField();
         }
 
-        if(this.nameSurnameInput === document.activeElement){
+        if(this.input === document.activeElement){
             return;
         }
 
@@ -69,12 +93,23 @@ class CvHeader extends Component{
                             onClick = { this.editHeaderInfo }
                         > { this.state.name } </p>
                         <CvHeaderForm 
-                            idProp = { this.fields.name }
+                            object = { this.fields.nameSurname }
                             handleInfoChange = { this.handleHeaderInfoChange }
-                            currentValue = { this.state.name }
-                            maxLength = "26"/>
-                        <p id = "role"> { this.state.role } </p>
-                        <p id = "applicant-description"> { this.state.applicantDescr } </p>
+                            currentValue = { this.state.name } />
+                        <p  id = "role"
+                            onClick = { this.editHeaderInfo }
+                        > { this.state.role } </p>
+                        <CvHeaderForm
+                            object = { this.fields.role }
+                            handleInfoChange = { this.handleHeaderInfoChange }
+                            currentValue = { this.state.role } />
+                        <p id = "applicant-description"
+                            onClick = { this.editHeaderInfo }
+                        > { this.state.applicantDescr } </p>
+                        <CvHeaderForm
+                            object = { this.fields.description }
+                            handleInfoChange = { this.handleHeaderInfoChange }
+                            currentValue = { this.state.applicantDescr } />
                     </div>
                     <div id = "profile-picture">
                         <p id = "drag-and-drop-text">drag &amp; drop</p>

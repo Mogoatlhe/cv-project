@@ -5,16 +5,16 @@ class CvHeaderForm extends Component{
     render(){
         return(
             <form onSubmit = { this.props.handleInfoChange }>
-                <label  id = { `${this.props.idProp}-label`}
+                <label  id = { `${this.props.object.id}-label`}
                         className = "hidden"
-                        htmlFor = { `${this.props.idProp}-input` }
-                        >Name Surname: </label>
+                        htmlFor = { `${this.props.object.id}-input` }
+                        > {`${this.props.object.label}`} </label>
                 <input  onChange = { this.props.handleInfoChange }
                         onBlur = { this.props.handleInfoChange }
                         type = "text" 
-                        id = { `${this.props.idProp}-input` } 
+                        id = { `${this.props.object.id}-input` } 
                         className = "hidden" 
-                        maxLength = { this.props.maxLength }
+                        maxLength = { this.props.object.maxLength }
                         value = { this.props.currentValue }/>
             </form>
         );
