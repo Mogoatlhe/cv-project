@@ -76,6 +76,10 @@ header{
     font-size: 1.4rem;
 }
 
+.hidden {
+    display: none;
+}
+
 #name-surname:hover{
     font-size: 1.5rem;
 }
@@ -96,8 +100,6 @@ header{
 #applicant-description:hover{
     font-size: 0.8rem;
 }
-
-
 
 #cv-header-text{
     padding: 2.5%;
@@ -127,4 +129,19 @@ header{
     place-self: center;
     width: 40px;
     text-align: center;
+}
+
+input[type="text"]{
+    border: none;
+    background-color: var(--black-shade);
+    color: white;
+    border-bottom: 1px solid var(--teal-shade);
+}
+
+#name-surname-input{
+    width: 200px;
+}
+
+input[type="text"]:focus{
+    outline: none;
 }
