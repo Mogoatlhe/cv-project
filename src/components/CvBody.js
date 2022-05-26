@@ -45,6 +45,7 @@ class CvBody extends Component{
                         <CvSocials socials = { this.contactInfo.linkedin }/>
                         <CvSocials socials = { this.contactInfo.github }/>
                     </div>
+                    <div id = "blur"></div>
                 </div>
                 <div id = "cv-body-right"></div>
             </div>
