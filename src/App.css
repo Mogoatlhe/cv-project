@@ -194,3 +194,49 @@ svg{
     height: 100vh;
     background-color: rgba(40, 43, 46, 0.8);
 }
+
+#contact-details-form-container{
+    margin-left: 25%;
+    margin-top: 12.5%;
+    position: fixed;
+    top: 0;
+    width: 50vw;
+    height: 50vh;
+    background-color: var(--black-shade);
+    border: 1px solid white;
+    color: white;
+    padding: 28px 40px;
+}
+
+#contact-details-form-header{
+    font-size: 1.2rem;
+}
+
+#contact-details-form-container form{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#phone-location-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+#phone-location-container .form-field{
+    width: 45%;
+}
+
+.form-field{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.form-field input{
+    border: 1px solid var(--teal-shade);
+    background-color: var(--black-shade);
+    color: white;
+    padding: 5px;
+}
