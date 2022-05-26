@@ -48,23 +48,34 @@ class CvBody extends Component{
                 inputType: "text"
             },
         }
+
+        this.blur = null;
+        this.formContainer = null;
+    }
+
+    togglePopUp = () => {
+        this.blur = document.getElementById("blur");
+        this.formContainer = document.getElementById("contact-details-form-container");
+
+        this.blur.classList.toggle("hidden");
+        this.formContainer.classList.toggle("hidden");
     }
 
     render(){
         return(
             <div id = "cv-body">
                 <div id = "cv-body-left">
-                    <div id = "contact-details">
+                    <div id = "contact-details" onClick = { this.togglePopUp }>
                         <CvSocials socials = { this.state.mail }/>
                         <CvSocials socials = { this.state.phone }/>
                         <CvSocials socials = { this.state.location }/>
                         <CvSocials socials = { this.state.linkedin }/>
                         <CvSocials socials = { this.state.github }/>
                     </div>
-                    <div id = "blur"></div>
+                    <div id = "blur" className = "hidden" onClick = { this.togglePopUp }></div>
                 </div>
                 <div id = "cv-body-right"></div>
-                <div id = "contact-details-form-container">
+                <div id = "contact-details-form-container" className = "hidden">
                     <p id = "contact-details-form-header">Contact Details</p>
                     <form>
                         <FormField formDetails = { this.state.mail }/>
