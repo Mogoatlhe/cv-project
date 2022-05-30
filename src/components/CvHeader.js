@@ -16,6 +16,7 @@ class CvHeader extends Component{
         this.field = null;
         this.input = null;
         this.label = null;
+        this.isError = null;
 
         this.fields = {
             nameSurname: {
@@ -37,8 +38,24 @@ class CvHeader extends Component{
 
         this.handleHeaderInfoChange = this.handleHeaderInfoChange.bind(this);
     }
+    
+    toggleErrorMessage = (value) => {
+        const error = document.getElementById("cv-header-error");
+        
+        if(value === null || value === undefined || value.length < 1){
+            error.classList.remove("hidden");
+            return true;
+        }
+        error.classList.add("hidden");
+        return false;
+    }
 
     editHeaderInfo = (e) => {
+
+        if(this.isError){
+            return;
+        }
+
         this.field = document.getElementById(e.target.id);
         this.input = document.getElementById(`${e.target.id}-input`);
         this.label = document.getElementById(`${e.target.id}-label`);
@@ -71,13 +88,18 @@ class CvHeader extends Component{
     handleHeaderInfoChange = (e) => {
         e.preventDefault();
 
-        if(e.target.value !== undefined){
-            this.editRelevantField(e.target.id, e.target.value);
+        const value = e.target.value;
+        this.isError = this.toggleErrorMessage(value);
+        if(value !== undefined){
+            this.editRelevantField(e.target.id, value);
         }else{
+            if(this.isError){
+                return;
+            }
             this.hideInputField();
         }
 
-        if(this.input === document.activeElement){
+        if(this.input === document.activeElement || this.isError){
             return;
         }
 
