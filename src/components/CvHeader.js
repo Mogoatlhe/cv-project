@@ -87,6 +87,7 @@ class CvHeader extends Component{
     render(){
         return(
             <div id = "cv-header-container">
+                <p id = "cv-header-error" className = "hidden">Field cannot be blank</p>
                 <div id = "cv-header">
                     <div id = "cv-header-text">
                         <p  id = "name-surname"

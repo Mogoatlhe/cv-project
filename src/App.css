@@ -60,6 +60,15 @@ header{
     height: 20vh;
 }
 
+#cv-header-error{
+    top: 15.6vh;
+    left: 3.5vw;
+    position: absolute;
+    color: red;
+    font-weight: 400;
+    font-style: oblique;
+}
+
 #cv-header{
     display: flex;
     align-items: center;
