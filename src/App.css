@@ -140,7 +140,7 @@ header{
     text-align: center;
 }
 
-input[type="text"]{
+input[type="text"], input[type="email"]{
     border: none;
     background-color: var(--black-shade);
     color: white;
@@ -159,7 +159,7 @@ input[type="text"]{
     width: 450px;
 }
 
-input[type="text"]:focus{
+input[type="text"]:focus, input[type="email"]{
     outline: none;
 }
 

@@ -11,9 +11,11 @@ class FormField extends Component{
                 <input
                     type = { this.props.formDetails.inputType }
                     id = { `${this.props.formDetails.name}-input` }
-                    maxLength = { this.props.formDetails.maxLength }
+                    maxLength = "100"
                     value = { this.props.formDetails.details }
-                    readOnly/>
+                    onChange = { this.props.toggleError }
+                    required/>
+                <p className = "hidden">{`Please provide a valid  ${this.props.formDetails.label}`}</p>
             </div>
         );
     }

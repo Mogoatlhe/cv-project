@@ -12,7 +12,7 @@ class CvBody extends Component{
         super();
 
         this.state = {
-            mail: {
+            email: {
                 details: "email@service.co.za",
                 label: "Email",
                 name: "email",
@@ -46,11 +46,13 @@ class CvBody extends Component{
                 name: "github",
                 iconType: faGithub,
                 inputType: "text"
-            },
+            }
         }
 
         this.blur = null;
         this.formContainer = null;
+
+        this.toggleSocialsError = this.toggleSocialsError.bind(this);
     }
 
     togglePopUp = () => {
@@ -61,12 +63,30 @@ class CvBody extends Component{
         this.formContainer.classList.toggle("hidden");
     }
 
+    toggleSocialsError = (e) => {
+        const currInput = e.target;
+        let id = currInput.id;
+        id = id.substring(0, id.length - 6);
+        const stateKeys = Object.keys(this.state);
+        let currKey = stateKeys.find(key => key === id);
+
+        this.setState({
+            [currKey]: {
+                details: currInput.value,
+                label: this.state[currKey].label,
+                name: this.state[currKey].name,
+                iconType: this.state[currKey].iconType,
+                inputType: this.state[currKey].inputType
+            }
+        });
+    }
+
     render(){
         return(
             <div id = "cv-body">
                 <div id = "cv-body-left">
                     <div id = "contact-details" onClick = { this.togglePopUp }>
-                        <CvSocials socials = { this.state.mail }/>
+                        <CvSocials socials = { this.state.email }/>
                         <CvSocials socials = { this.state.phone }/>
                         <CvSocials socials = { this.state.location }/>
                         <CvSocials socials = { this.state.linkedin }/>
@@ -78,13 +98,23 @@ class CvBody extends Component{
                 <div id = "contact-details-form-container" className = "hidden">
                     <p id = "contact-details-form-header">Contact Details</p>
                     <form>
-                        <FormField formDetails = { this.state.mail }/>
+                        <FormField
+                            formDetails = { this.state.email }
+                            toggleError =  { this.toggleSocialsError }/>
                         <div id = "phone-location-container">
-                            <FormField formDetails = { this.state.phone }/>
-                            <FormField formDetails = { this.state.location }/>
+                            <FormField 
+                                formDetails = { this.state.phone }
+                                toggleError =  { this.toggleSocialsError }/>
+                            <FormField 
+                                formDetails = { this.state.location }
+                                toggleError =  { this.toggleSocialsError }/>
                         </div>
-                        <FormField formDetails = { this.state.linkedin }/>
-                        <FormField formDetails = { this.state.github }/>
+                        <FormField 
+                            formDetails = { this.state.linkedin }
+                            toggleError =  { this.toggleSocialsError }/>
+                        <FormField
+                            formDetails = { this.state.github }
+                            toggleError =  { this.toggleSocialsError }/>
                     </form>
                 </div>
             </div>
