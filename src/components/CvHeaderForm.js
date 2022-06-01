@@ -9,7 +9,8 @@ class CvHeaderForm extends Component{
                         className = "hidden"
                         htmlFor = { `${this.props.object.id}-input` }
                         > {`${this.props.object.label}`} </label>
-                <input  onChange = { this.props.handleInfoChange }
+                <input  onKeyDown = { this.props.detectAltKeys }
+                        onChange = { this.props.handleInfoChange }
                         onBlur = { this.props.handleInfoChange }
                         type = "text" 
                         id = { `${this.props.object.id}-input` } 

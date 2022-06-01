@@ -13,6 +13,7 @@ class CvHeader extends Component{
             picture: false,
         }
 
+        this.key = null;
         this.field = null;
         this.input = null;
         this.label = null;
@@ -37,12 +38,13 @@ class CvHeader extends Component{
         }
 
         this.handleHeaderInfoChange = this.handleHeaderInfoChange.bind(this);
+        this.detectAltKeys = this.detectAltKeys.bind(this);
     }
     
-    toggleErrorMessage = (value) => {
+    toggleErrorMessage = () => {
         const error = document.getElementById("cv-header-error");
         
-        if(value === null || value === undefined || value.length < 1){
+        if(this.input.value.length < 1){
             error.classList.remove("hidden");
             return true;
         }
@@ -89,8 +91,8 @@ class CvHeader extends Component{
         e.preventDefault();
 
         const value = e.target.value;
-        this.isError = this.toggleErrorMessage(value);
-        if(value !== undefined){
+        this.isError = this.toggleErrorMessage();
+        if(this.key !== "Enter" && this.key !== "Escape"){
             this.editRelevantField(e.target.id, value);
         }else{
             if(this.isError){
@@ -106,6 +108,10 @@ class CvHeader extends Component{
         this.hideInputField();
     }
 
+    detectAltKeys = (e) => {
+        this.key = e.key;
+    }
+
     render(){
         return(
             <div id = "cv-header-container">
@@ -116,6 +122,7 @@ class CvHeader extends Component{
                             onClick = { this.editHeaderInfo }
                         > { this.state.name } </p>
                         <CvHeaderForm 
+                            detectAltKeys = { this.detectAltKeys }
                             object = { this.fields.nameSurname }
                             handleInfoChange = { this.handleHeaderInfoChange }
                             currentValue = { this.state.name } />
