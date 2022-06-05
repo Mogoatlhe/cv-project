@@ -6,6 +6,7 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import FormField from "./FormField";
+import Skills from "./Skills";
 
 class CvBody extends Component{
     constructor(){
@@ -92,6 +93,7 @@ class CvBody extends Component{
                         <CvSocials socials = { this.state.linkedin }/>
                         <CvSocials socials = { this.state.github }/>
                     </div>
+                    <Skills />
                     <div id = "blur" className = "hidden" onClick = { this.togglePopUp }></div>
                 </div>
                 <div id = "cv-body-right"></div>
