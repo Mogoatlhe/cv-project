@@ -275,7 +275,7 @@ svg{
     flex-wrap: wrap;
 }
 
-.skill{
+.skill, .edit-skill{
     font-size: 0.9rem;
     background-color: var(--black-shade);
     width: fit-content;
@@ -287,6 +287,11 @@ svg{
 .skill:hover{
     padding: 9px;
     cursor: pointer;
+}
+
+.edit-skill{
+    font-family: var(--trykker);
+    border: none;
 }
 
 #skills-template{
