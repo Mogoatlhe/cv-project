@@ -13,20 +13,22 @@ class Skill extends Component{
         this.skill = null;
     }
 
-    setEditInputSize = () => {
-        this.editInput = document.querySelector(".edit-skill");
+    setEditInputSize = (e) => {
+        this.editInput = e.target.nextSibling;
         this.editInput.style.width = this.editInput.value.length + "ch";
     }
 
-    toggleSkillVisibility = () => {
-        this.setEditInputSize();
-        this.skill = this.editInput.previousSibling;
-        this.skill.classList.toggle("hidden");
-        this.editInput.classList.toggle("hidden");
+    hideSkillInput = () => {
+        this.skill.classList.remove("hidden");
+        this.editInput.classList.add("hidden");
+    }
 
-        if(this.skill.classList.contains("hidden")){
-            this.editInput.focus();
-        }
+    showSkillInput = (e) => {
+        this.setEditInputSize(e);
+        this.skill = this.editInput.previousSibling;
+        this.skill.classList.add("hidden");
+        this.editInput.classList.remove("hidden");
+        this.editInput.focus();
     }
 
     saveSkill = (e) => {
@@ -44,12 +46,12 @@ class Skill extends Component{
     render(){
         return(
             <React.Fragment>
-                <p onClick = { this.toggleSkillVisibility } className = "skill">{ this.state.value }</p>
+                <p onClick = { this.showSkillInput } className = "skill">{ this.state.value }</p>
                 <input className = "edit-skill hidden"
                     type = "text"
                     value = { this.state.value }
                     style = {{ width: this.state.value.length + "ch" }}
-                    onBlur = { this.toggleSkillVisibility }
+                    onBlur = { this.hideSkillInput }
                     onChange = { this.edit }
                     onKeyDown = { this.saveSkill }
                     maxLength = "11"/>

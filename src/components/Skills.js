@@ -26,8 +26,15 @@ class Skills extends Component{
         return skills;
     }
 
-    edit = () => {
+    add = () => {
+        const skill = {
+            text: "new skill",
+            key: uniqid(),
+        }
 
+        this.setState({
+            skills: this.state.skills.concat(skill),
+        });
     }
 
     render(){
@@ -36,7 +43,8 @@ class Skills extends Component{
                 <p id = "skills-category" className = "category-name">Skills</p>
                 <div id = "skills-list">
                     { this.displaySkills().map(skill => skill) }
-                    <p className = "skill" id = "skills-template"></p>
+                    <p  className = "skill" id = "skills-template"
+                        onClick = { this.add }></p>
                 </div>
             </div>
         );
