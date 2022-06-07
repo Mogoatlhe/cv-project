@@ -29,6 +29,12 @@ class Skill extends Component{
         }
     }
 
+    saveSkill = (e) => {
+        if(e.key === "Escape" || e.key === "Enter"){
+            e.target.blur();
+        }
+    }
+
     edit = (e) => {
         this.setState({
             value: e.target.value
@@ -43,8 +49,9 @@ class Skill extends Component{
                     type = "text"
                     value = { this.state.value }
                     style = {{ width: this.state.value.length + "ch" }}
-                    onClick = { this.toggleSkillVisibility }
+                    onBlur = { this.toggleSkillVisibility }
                     onChange = { this.edit }
+                    onKeyDown = { this.saveSkill }
                     maxLength = "11"/>
             </React.Fragment>
         );
