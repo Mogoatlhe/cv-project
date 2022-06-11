@@ -256,7 +256,8 @@ svg{
     padding: 5px;
 }
 
-#skills-container{
+#skills-container,
+#languages-container{
     display: flex;
     flex-direction: column;
     gap: 5px;
