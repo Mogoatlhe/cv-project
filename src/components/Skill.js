@@ -5,10 +5,6 @@ class Skill extends Component{
     constructor(props){
         super(props);
 
-        this.state = {
-            value: this.props.text
-        }
-
         this.editInput = "null";
         this.skill = null;
     }
@@ -19,11 +15,26 @@ class Skill extends Component{
     }
 
     hideSkillInput = () => {
+
+        if(document.querySelector("#skills-error").textContent.length > 0){
+            this.skill.click();
+            return;
+        }
+
         this.skill.classList.remove("hidden");
         this.editInput.classList.add("hidden");
     }
 
     showSkillInput = (e) => {
+
+        if(document.querySelector("#skills-error").textContent.length > 0){
+            const currentInput = document.querySelector(".edit-skill:not(.hidden)")
+            if(currentInput !== null){
+                currentInput.focus();
+                return;
+            }
+        }
+
         this.setEditInputSize(e);
         this.skill = this.editInput.previousSibling;
         this.skill.classList.add("hidden");
@@ -37,22 +48,16 @@ class Skill extends Component{
         }
     }
 
-    edit = (e) => {
-        this.setState({
-            value: e.target.value
-        });
-    }
-
     render(){
         return(
             <React.Fragment>
-                <p onClick = { this.showSkillInput } className = "skill">{ this.state.value }</p>
+                <p onClick = { this.showSkillInput } className = "skill">{ this.props.text }</p>
                 <input className = "edit-skill hidden"
                     type = "text"
-                    value = { this.state.value }
-                    style = {{ width: this.state.value.length + "ch" }}
+                    value = { this.props.text }
+                    style = {{ width: this.props.text.length + "ch" }}
                     onBlur = { this.hideSkillInput }
-                    onChange = { this.edit }
+                    onChange = { this.props.edit }
                     onKeyDown = { this.saveSkill }
                     maxLength = "11"/>
             </React.Fragment>
